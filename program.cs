@@ -7,24 +7,31 @@ using System.IO;
 
 namespace MusicPlaylistAnalyzer
 {
-    public class Song
+  public class MusicStats
     {
+        public String Name;
+        public String Artist;
+        public String Album;
+        public String Genre;
+        public int Size;
+        public int Time;
+        public int Year;
+        public int Plays;
 
-        public string Name, Artist, Album, Genre;
-        public int Size, Time, Year, Plays;
 
-        public Song(string data1, string data2, string data3, string data4, int data5, int data6, int data7, int data8)
+        public MusicStats(String name, String artist, String album, String genre,
+                         int size, int time, int year, int plays)
         {
-            Name = data1;
-            Artist = data2;
-            Album = data3;
-            Genre = data4;
-            Size = data5;
-            Time = data6;
-            Year = data7;
-            Plays = data8;
+            Name = name;
+            Artist = artist;
+            Album = album;
+            Genre = genre;
+            Size = size;
+            Time = time;
+            Year = year;
+            Plays = plays;
         }
-
+    }
         override public string ToString()
         {
             return String.Format("Name: {0}, Artist: {1}, Album: {2}, Genre: {3}, Size: {4}, Time: {5}, Year: {6}, Plays: {7}", Name, Artist, Album, Genre, Size, Time, Year, Plays);
@@ -59,8 +66,8 @@ namespace MusicPlaylistAnalyzer
                           
                             if (strings.Length < 8)
                             {
-                                Console.Write("Record doesnʼt contain the correct number of data elements!");
-                                Console.WriteLine($"Row {i} contains {strings.Length}  values.It should contain 8.");
+                                Console.Write("This record doesnʼt contain the correct number of data elements! Please try agian.");
+                                Console.WriteLine($"Row {i} contains {strings.Length}  values.The record should contain 8.");
                                 break;
                             }
                             else
@@ -119,7 +126,7 @@ namespace MusicPlaylistAnalyzer
 
                     //4.What songs are in the playlist from the album “Welcome to the Fishbowl?”
                     var SongsAlbumFishbowl = from song in songs where song.Album == "Welcome to the Fishbowl" select song;
-                    report += "Songs from the album Welcome to the Fishbowl:\n";
+                    report += "Songs from the album Welcome to the Fishbowl are:\n";
                     foreach (Song song in SongsAlbumFishbowl)
                     {
                         report += song + "\n";
@@ -141,7 +148,7 @@ namespace MusicPlaylistAnalyzer
                         report += name + "\n";
                     }
 
-                    //7.What is the longest song ? (longest in Time)
+                    //7.What is the longest song ?
                     var LongestSong = from song in songs orderby song.Time descending select song;
                     report += "Longest song:\n";
                     report += LongestSong.First();
@@ -150,12 +157,12 @@ namespace MusicPlaylistAnalyzer
 
                     write.Close();
                 }
-                Console.WriteLine("Music Playlist Report file has be created!");
+                Console.WriteLine("Your Music Playlist Report file has be created!");
             }
 
             catch (Exception ex)
             {
-                Console.WriteLine("Report file canʼt be opened or written to!");
+                Console.WriteLine("Your Report file canʼt be opened or written to! Please try again");
             }
 
             Console.ReadLine();
