@@ -98,7 +98,7 @@ namespace MusicPlaylistAnalyzer
                     write.WriteLine("Music Playlist Report");
                     write.WriteLine("");
 
-                     //1.  
+                     //Question 1
                      var SongsPlays = from song in songs where song.Plays >= 200 select song;
                     report += "Songs that received 200 or more plays:\n";
                     foreach(Song song in SongsPlays)
@@ -106,7 +106,7 @@ namespace MusicPlaylistAnalyzer
                         report += song + "\n";
                     }
                  
-                    //2.
+                    //Question 2
                     var SongsGenreAlternative = from song in songs where song.Genre == "Alternative" select song;
                     i = 0;
                     foreach (Song song in SongsGenreAlternative)
@@ -115,7 +115,7 @@ namespace MusicPlaylistAnalyzer
                     }
                     report += $"songs are in the playlist with the Genre of “Alternative: {i}”\n";
 
-                    //3.
+                    //Question 3
                     var SongsGenreHipHopRap = from song in songs where song.Genre == "Hip-Hop/Rap" select song;
                     i = 0;
                     foreach (Song song in SongsGenreHipHopRap)
@@ -124,7 +124,7 @@ namespace MusicPlaylistAnalyzer
                     }
                     report += $"Number of songs Hip-Hop/Rap: {i}\n";
 
-                    //4.
+                    //Question 4
                     var SongsAlbumFishbowl = from song in songs where song.Album == "Welcome to the Fishbowl" select song;
                     report += "Songs from the album Welcome to the Fishbowl are:\n";
                     foreach (Song song in SongsAlbumFishbowl)
@@ -132,7 +132,7 @@ namespace MusicPlaylistAnalyzer
                         report += song + "\n";
                     }
 
-                    //5.
+                    //Question 5
                     var Songs1970 = from song in songs where song.Year < 1970 select song;
                     report += "Songs from before 1970:\n";
                     foreach (Song song in Songs1970)
@@ -140,7 +140,7 @@ namespace MusicPlaylistAnalyzer
                         report += song + "\n";
                     }
 
-                    //6.
+                    //Question 6
                     var Names85Characters = from song in songs where song.Name.Length > 85 select song.Name;
                     report += "Song names longer than 85 characters:\n";
                     foreach (string name in Names85Characters)
@@ -148,7 +148,7 @@ namespace MusicPlaylistAnalyzer
                         report += name + "\n";
                     }
 
-                    //7.
+                    //Question 7
                     var LongestSong = from song in songs orderby song.Time descending select song;
                     report += "Longest song:\n";
                     report += LongestSong.First();
